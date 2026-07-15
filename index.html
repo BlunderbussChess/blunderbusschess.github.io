@@ -411,10 +411,8 @@
   .footer-links{ display:flex; gap:28px; flex-wrap:wrap; font-family:var(--font-label); font-size:.85rem; color:var(--muted); }
   .footer-links a:hover{ color:var(--ink); }
   .footer-bottom{ margin-top:30px; padding-top:24px; border-top:1px solid var(--line); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:.78rem; color:var(--muted-dim); font-family:var(--font-label); }
-  .visit-counter{
-    display:inline-flex; align-items:center; gap:6px; font-family:var(--font-label); font-size:.76rem; color:var(--muted-dim);
-  }
-  .visit-counter .dot{ width:6px; height:6px; border-radius:50%; background:linear-gradient(135deg, var(--orange), var(--purple)); box-shadow:0 0 8px var(--purple); }
+  .visit-counter{ display:inline-flex; align-items:center; }
+  .visit-counter img{ height:20px; border-radius:5px; display:block; }
 
   .reveal{ opacity:0; transform:translateY(28px); transition:opacity .8s ease, transform .8s ease; }
   .reveal.in{ opacity:1; transform:translateY(0); }
@@ -690,7 +688,7 @@
     </div>
     <div class="footer-bottom">
       <span>© 2026 Blunderbuss — learn without judgement.</span>
-      <span class="visit-counter" id="visit-counter"><span class="dot"></span><span id="visit-count-number">—</span> visits</span>
+      <span class="visit-counter"><img src="https://visitor-badge.laobi.icu/badge?page_id=blunderbuss-chess-server.homepage&left_color=%23170f2b&right_color=%23ff7a29&left_text=Visits" alt="visitor count"></span>
       <span>Chess · Shogi · Free, always.</span>
     </div>
   </div>
@@ -830,38 +828,37 @@
     'Helps players get comfortable with drops, promotions, and shogi tactics.'
   ];
     const chessCoaches = [
-    { name:'Spag', role:'Chess Coach', gif:'https://ik.imagekit.io/fazi1oxpu/coach%20card/spag_2.gif' },
-    { name:'Gabe', role:'Chess Coach', gif:'https://ik.imagekit.io/fazi1oxpu/coach%20card/gabe_2.gif' },
-    { name:'Tactrics', role:'Chess Coach', gif:'https://ik.imagekit.io/fazi1oxpu/coach%20card/tactricss.gif' },
-    { name:'Jackni', role:'Chess Coach', gif:'https://ik.imagekit.io/fazi1oxpu/coach%20card/jackni1.gif' }, 
-    { name:'Nova', role:'Chess Coach', gif:'https://ik.imagekit.io/fazi1oxpu/coach%20card/nova_2.gif' }, 
-    { name:'Aru', role:'Chess Coach', gif:'https://ik.imagekit.io/fazi1oxpu/coach%20card/aru.gif' }, 
-    { name:'Impasta', role:'Chess Coach', gif:'https://ik.imagekit.io/fazi1oxpu/coach%20card/impasta.gif' }, 
-    { name:'Kia', role:'Chess Coach', gif:'https://ik.imagekit.io/fazi1oxpu/coach%20card/kia.gif' }, 
-    { name:'Bumblegum', role:'Chess Coach', gif:'https://ik.imagekit.io/fazi1oxpu/coach%20card/bumblegum.gif' }, 
-    { name:'Kennedy', role:'Chess Coach', gif:'https://ik.imagekit.io/fazi1oxpu/coach%20card/kennedy_2.gif' }, 
-    { name:'Promko', role:'Chess Coach', gif:'https://ik.imagekit.io/fazi1oxpu/coach%20card/promko.gif' }, 
-    { name:'Crash / Brunix', role:'Chess Coach', gif:'https://ik.imagekit.io/fazi1oxpu/coach%20card/crash.gif' }, 
-    { name:'Pikachu', role:'Chess Coach', gif:'https://ik.imagekit.io/fazi1oxpu/coach%20card/pikachu.gif' }, 
-  ].map((c,i) => ({ ...c, blurb: chessCoachBlurbs[i % chessCoachBlurbs.length], tag:'Chess Coach', gif: c.gif || '' }));
+    { name:'Spag', role:'Chess Coach',photo:'', media:'https://ik.imagekit.io/fazi1oxpu/coach%20card/spag_2.gif' },
+    { name:'Gabe', role:'Chess Coach', media:'https://ik.imagekit.io/fazi1oxpu/coach%20card/gabe_2.gif' },
+    { name:'Tactrics', role:'Chess Coach', media:'https://ik.imagekit.io/fazi1oxpu/coach%20card/tactricss.gif' },
+    { name:'Jackni', role:'Chess Coach', media:'https://ik.imagekit.io/fazi1oxpu/coach%20card/jackni1.gif' }, 
+    { name:'Nova', role:'Chess Coach',photo:'', media:'https://ik.imagekit.io/fazi1oxpu/coach%20card/nova_2.gif' }, 
+    { name:'Aru', role:'Chess Coach', media:'https://ik.imagekit.io/fazi1oxpu/coach%20card/aru.gif' }, 
+    { name:'Impasta', role:'Chess Coach', media:'https://ik.imagekit.io/fazi1oxpu/coach%20card/impasta.gif' }, 
+    { name:'Kia', role:'Chess Coach', media:'https://ik.imagekit.io/fazi1oxpu/coach%20card/kia.gif' }, 
+    { name:'Bumblegum', role:'Chess Coach', media:'https://ik.imagekit.io/fazi1oxpu/coach%20card/bumblegum.gif' }, 
+    { name:'Kennedy', role:'Chess Coach', media:'https://ik.imagekit.io/fazi1oxpu/coach%20card/kennedy_2.gif' }, 
+    { name:'Promko', role:'Chess Coach', media:'https://ik.imagekit.io/fazi1oxpu/coach%20card/promko.gif' }, 
+    { name:'Crash / Brunix', role:'Chess Coach', media:'https://ik.imagekit.io/fazi1oxpu/coach%20card/crash.gif' }, 
+    { name:'Pikachu', role:'Chess Coach', media:'https://ik.imagekit.io/fazi1oxpu/coach%20card/pikachu.gif' }, 
+  ].map((c,i) => ({ ...c, blurb: chessCoachBlurbs[i % chessCoachBlurbs.length], tag:'Chess Coach', media: c.media || '', photo: c.photo || '' }));
   const shogiCoaches = [
-    { name:'Nightsparrow', role:'Lead Shogi Coach', tag:'Lead Shogi Coach', gif:'https://ik.imagekit.io/fazi1oxpu/coach%20card/nightsparrow.gif' },
-    { name:'tuelyps', role:'Shogi Coach', tag:'Shogi Coach', gif:'https://ik.imagekit.io/fazi1oxpu/coach%20card/omi.gif' }, 
-    { name:'Melkor', role:'Shogi Coach', tag:'Shogi Coach', gif:'https://ik.imagekit.io/fazi1oxpu/coach%20card/melkor.gif' }, 
-    { name:'Hen', role:'Shogi Coach', tag:'Shogi Coach', gif:'https://ik.imagekit.io/fazi1oxpu/coach%20card/hen.gif' }, 
-    { name:'Sofy', role:'Shogi Coach', tag:'Shogi Coach', gif:'https://ik.imagekit.io/fazi1oxpu/coach%20card/sofy.gif' }, 
-  ].map((c,i) => ({ ...c, blurb: shogiCoachBlurbs[i % shogiCoachBlurbs.length], gif: c.gif || '' }));
+    { name:'Nightsparrow', role:'Lead Shogi Coach', tag:'Lead Shogi Coach',photo:'https://ik.imagekit.io/fazi1oxpu/web/7b646d09dc50148a2e539a5ca3d706b4.png', media:'https://ik.imagekit.io/fazi1oxpu/coach%20card/nightsparrow.gif' },
+    { name:'tuelyps', role:'Shogi Coach', tag:'Shogi Coach', media:'https://ik.imagekit.io/fazi1oxpu/coach%20card/omi.gif' }, 
+    { name:'Melkor', role:'Shogi Coach', tag:'Shogi Coach', media:'https://ik.imagekit.io/fazi1oxpu/coach%20card/melkor.gif' }, 
+    { name:'Hen', role:'Shogi Coach', tag:'Shogi Coach', media:'https://ik.imagekit.io/fazi1oxpu/coach%20card/hen.gif' }, 
+    { name:'Sofy', role:'Shogi Coach', tag:'Shogi Coach', media:'https://ik.imagekit.io/fazi1oxpu/coach%20card/sofy.gif' }, 
+  ].map((c,i) => ({ ...c, blurb: shogiCoachBlurbs[i % shogiCoachBlurbs.length], media: c.media || '', photo: c.photo || '' }));
   const staff = [
-    { name:'ɪᴍ⁴ʜɢʜ²ᴛʜɪs', role:'Founder & Owner', tag:'Founder', blurb:'Built Blunderbuss from the ground up to make coaching free for everyone.' },
-    { name:'Twisted ˖ ࣪ ִ𖤐', role:'Owner & Creative Director', tag:'Owner', blurb:'Shapes the look, feel, and brand of everything Blunderbuss.' },
-    { name:'Gabe', role:'Head Admin', tag:'Head Admin', blurb:'Oversees the admin team and keeps the server running smoothly.' },
-    { name:'Nightsparrow', role:'Admin', tag:'Admin', blurb:'Helps manage the server and keep things organized day to day.' },
-    { name:'Aru', role:'Admin', tag:'Admin', blurb:'Helps manage the server and keep things organized day to day.' },
-    { name:'Jackni', role:'Admin', tag:'Admin', blurb:'Helps manage the server and keep things organized day to day.' },
-    { name:'Nova', role:'Admin', tag:'Admin', blurb:'Helps manage the server and keep things organized day to day.' },
-    { name:'Tactrics', role:'Admin', tag:'Admin', blurb:'Helps manage the server and keep things organized day to day.' },
-    { name:'Dekliff', role:'Moderator', tag:'Moderator', blurb:'Keeps the space safe, friendly, and on-topic.' },
-    { name:'Raj', role:'Moderator', tag:'Moderator', blurb:'Keeps the space safe, friendly, and on-topic.' },
+    { name:'ɪᴍ⁴ʜɢʜ²ᴛʜɪs', role:'Founder & Owner', tag:'Founder', blurb:'Built Blunderbuss from the ground up to make coaching free for everyone.', photo:'https://ik.imagekit.io/fazi1oxpu/web/blunder.gif?updatedAt=1784078779534', media:'' },
+    { name:'Twisted ˖ ࣪ ִ𖤐', role:'Owner & Creative Director', tag:'Owner', blurb:'Shapes the look, feel, and brand of everything Blunderbuss.', photo:'https://ik.imagekit.io/fazi1oxpu/ezgif-6-5a037eb7da_1.gif?updatedAt=1783461619333', media:'' },
+    { name:'Gabe', role:'Head Admin', tag:'Head Admin', blurb:'Oversees the admin team and keeps the server running smoothly.', photphoto:'https://ik.imagekit.io/fazi1oxpu/web/7b646d09dc50148a2e539a5ca3d706b4.png', media:'' },
+    { name:'Aru', role:'Admin', tag:'Admin', blurb:'Helps manage the server and keep things organized day to day.', photo:'', media:'' },
+    { name:'Jackni', role:'Admin', tag:'Admin', blurb:'Helps manage the server and keep things organized day to day.', photo:'', media:'' },
+    { name:'Nova', role:'Admin', tag:'Admin', blurb:'Helps manage the server and keep things organized day to day.', photo:'', media:'' },
+    { name:'Tactrics', role:'Admin', tag:'Admin', blurb:'Helps manage the server and keep things organized day to day.', photo:'', media:'' },
+    { name:'Dekliff', role:'Moderator', tag:'Moderator', blurb:'Keeps the space safe, friendly, and on-topic.', photo:'', media:'' },
+    { name:'Raj', role:'Moderator', tag:'Moderator', blurb:'Keeps the space safe, friendly, and on-topic.', photo:'', media:'' },
   ];
   function renderChromaGrid(list, gridId){
     const grid = document.getElementById(gridId);
@@ -891,7 +888,11 @@
         card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
         card.style.setProperty('--my', (e.clientY - r.top) + 'px');
       });
-      card.addEventListener('click', () => openCoachPanel(c, chroma, card));
+      if(c.media){
+        card.addEventListener('click', () => openCoachPanel(c, chroma, card));
+      } else {
+        card.style.cursor = 'default';
+      }
       grid.appendChild(card);
       io.observe(card);
     });
@@ -924,11 +925,11 @@
     coachPanelName.textContent = c.name;
     coachPanelRole.textContent = c.role;
     coachPanelBlurb.textContent = c.blurb;
-    // media: use c.gif if provided (a URL to a gif or image), otherwise show the placeholder note
-    if(c.gif){
-      coachPanelMedia.innerHTML = `<img src="${c.gif}" alt="${c.name}">`;
+    // media: use c.media if provided (a URL to a gif or image), otherwise show the placeholder note
+    if(c.media){
+      coachPanelMedia.innerHTML = `<img src="${c.media}" alt="${c.name}">`;
     } else {
-      coachPanelMedia.innerHTML = `<span class="media-placeholder">Add a gif or photo URL for ${c.name} in the "gif" field</span>`;
+      coachPanelMedia.innerHTML = `<span class="media-placeholder">Add a gif or photo URL for ${c.name} in the "media" field</span>`;
     }
     coachPanel.classList.add('open');
     // size the slide-down to fit the actual content (handles big gifs correctly)
@@ -1068,22 +1069,6 @@
   renderYouTubeGrid();
   const shuffleBtn = document.getElementById('yt-shuffle');
   if(shuffleBtn) shuffleBtn.addEventListener('click', renderYouTubeGrid);
-
-  // ---- visit counter: free, no-signup, no-key counter via countapi (revival of countapi.xyz) ----
-  // Change the key below any time you want a fresh count (e.g. after moving to your final domain).
-  const VISIT_COUNTER_KEY = 'blunderbuss-chess-server-homepage-visits';
-  fetch(`https://countapi.mileshilliard.com/api/v1/hit/${VISIT_COUNTER_KEY}`)
-    .then(r => r.json())
-    .then(data => {
-      const count = data?.value;
-      const el = document.getElementById('visit-count-number');
-      if(el && count != null) el.textContent = Number(count).toLocaleString();
-      else if(el) document.getElementById('visit-counter').style.display = 'none';
-    })
-    .catch(() => {
-      const wrap = document.getElementById('visit-counter');
-      if(wrap) wrap.style.display = 'none';
-    });
 </script>
 
 <!--
